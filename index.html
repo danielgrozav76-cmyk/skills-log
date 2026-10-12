@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Grozav — Employability Skills Portfolio</title>
+<meta name="description" content="Employability skills log and reflection for BSM24001 Critical and Creative Thinking, Ravensbourne University London.">
+<style>
+  :root{
+    --bg:#f6f5f2;
+    --surface:#ffffff;
+    --ink:#1b1d21;
+    --muted:#5c6066;
+    --line:#e4e1da;
+    --accent:#1f4e46;
+    --accent-soft:#e7efec;
+    --accent-2:#c6872f;
+    --shadow:0 1px 2px rgba(27,29,33,.04),0 8px 24px rgba(27,29,33,.06);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14161a;--surface:#1c1f25;--ink:#f1efe9;--muted:#a3a8b0;
+      --line:#2b2f37;--accent:#7fc6b6;--accent-soft:#1f2a28;--accent-2:#e0a957;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14161a;--surface:#1c1f25;--ink:#f1efe9;--muted:#a3a8b0;
+    --line:#2b2f37;--accent:#7fc6b6;--accent-soft:#1f2a28;--accent-2:#e0a957;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:Arial,Helvetica,"Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;letter-spacing:.2px;font-size:1rem}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:22px;font-size:.9rem}
+  .nav-links a{color:var(--muted);text-decoration:none;transition:color .15s}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:620px){.nav-links{display:none}}
+
+  /* HERO */
+  .hero{padding:74px 0 54px}
+  .eyebrow{
+    display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+    background:var(--accent-soft);padding:6px 12px;border-radius:999px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.08;letter-spacing:-.02em;font-weight:800}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p.lede{margin-top:20px;font-size:1.12rem;color:var(--muted);max-width:60ch}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .chip{
+    font-size:.82rem;color:var(--ink);background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:7px 14px;box-shadow:var(--shadow);
+  }
+  .chip b{color:var(--accent)}
+
+  /* SECTION */
+  section{padding:40px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+  .sec-head .num{font-size:.8rem;font-weight:700;color:var(--accent-2);letter-spacing:.1em}
+  .sec-head h2{font-size:1.5rem;letter-spacing:-.01em;font-weight:800}
+  .intro-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .lead-para{font-size:1.04rem;color:var(--ink)}
+  .lead-para + .lead-para{color:var(--muted);font-size:.98rem}
+
+  /* SKILLS */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.skills{grid-template-columns:1fr}}
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+  .card .ic{
+    width:38px;height:38px;border-radius:10px;background:var(--accent-soft);
+    display:grid;place-items:center;margin-bottom:14px;color:var(--accent);
+  }
+  .card .ic svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9}
+  .card h3{font-size:1.06rem;margin-bottom:4px}
+  .card .tagline{font-size:.78rem;color:var(--accent-2);font-weight:700;letter-spacing:.03em;margin-bottom:10px}
+  .card p{font-size:.92rem;color:var(--muted)}
+  .card .evi{
+    margin-top:14px;font-size:.82rem;color:var(--ink);
+    border-top:1px dashed var(--line);padding-top:12px;
+  }
+  .card .evi b{color:var(--accent);font-weight:700}
+
+  /* REFLECTION */
+  .reflect{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px;box-shadow:var(--shadow);
+  }
+  .reflect .model-tag{
+    font-size:.78rem;font-weight:700;color:var(--accent-2);letter-spacing:.06em;
+    text-transform:uppercase;margin-bottom:14px;display:inline-block;
+  }
+  .reflect p{font-size:1.02rem;color:var(--ink);max-width:68ch}
+  .reflect .wc{margin-top:16px;font-size:.82rem;color:var(--muted)}
+  .stages{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .stages span{
+    font-size:.72rem;color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:4px 11px;
+  }
+
+  /* REFERENCES */
+  .refs{list-style:none;display:grid;gap:12px}
+  .refs li{
+    font-size:.86rem;color:var(--muted);padding-left:22px;position:relative;line-height:1.5;
+  }
+  .refs li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:34px 0 50px;margin-top:24px}
+  footer .f-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer p{font-size:.84rem;color:var(--muted)}
+  footer a{color:var(--accent);text-decoration:none;font-weight:600}
+  .divider{height:1px;background:var(--line);margin:0}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">Daniel <span>Grozav</span></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#reflection">Reflection</a>
+      <a href="#references">References</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="top">
+    <span class="eyebrow">Employability Skills Portfolio</span>
+    <h1>Evidencing the skills I built through <em>critical and creative thinking</em>.</h1>
+    <p class="lede">A record of the professional competencies I developed during BSM24001 at Ravensbourne University London, drawn from the module's quiz, group debate, and this digital portfolio.</p>
+    <div class="meta-row">
+      <div class="chip"><b>Module</b> &nbsp;BSM24001 Critical &amp; Creative Thinking</div>
+      <div class="chip"><b>Level</b> &nbsp;3 · Semester 1</div>
+      <div class="chip"><b>Learning Outcome</b> &nbsp;LO4</div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider"></div>
+
+  <section class="wrap" id="about">
+    <div class="sec-head"><span class="num">01</span><h2>About this portfolio</h2></div>
+    <div class="intro-grid">
+      <p class="lead-para">I am a Level 3 business student at Ravensbourne University London. This webpage forms Part 3 of BSM24001 Critical and Creative Thinking. It evidences the core employability skills I attained across the module and reflects critically on how I developed them.</p>
+      <p class="lead-para">The module ran through three connected tasks: a multiple-choice quiz on critical thinking and research methods, a 20-minute interdisciplinary group debate on ethical and sustainability issues in the creative industries, and this portfolio. Each task is used below as concrete evidence for a named skill, rather than a general claim.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="skills">
+    <div class="sec-head"><span class="num">02</span><h2>Core employability skills</h2></div>
+    <div class="skills">
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5L18 18M18 6l-1.5 1.5M7.5 16.5L6 18"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <div class="tagline">Analytical competence</div>
+        <h3>Critical thinking &amp; logical reasoning</h3>
+        <p>Applying structured reasoning, evaluating arguments, and distinguishing strong evidence from weak claims.</p>
+        <div class="evi"><b>Evidence:</b> Part 1 quiz on critical-thinking methods, logical reasoning and ethical frameworks, where I tested and sharpened how I assess arguments under timed conditions.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div>
+        <div class="tagline">Information literacy</div>
+        <h3>Research skills</h3>
+        <p>Locating, judging and referencing credible academic sources to support a position.</p>
+        <div class="evi"><b>Evidence:</b> Sourcing debate material through JSTOR, Google Scholar and Emerald Insight, and citing it with Harvard referencing throughout my preparation materials.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.3"/><path d="M4 19c0-2.8 2.2-5 5-5s5 2.2 5 5M15 15c2.2 0 4 1.6 4 4"/></svg></div>
+        <div class="tagline">Collaboration</div>
+        <h3>Teamwork &amp; collaboration</h3>
+        <p>Contributing reliably within a mixed team, sharing workload and negotiating a shared line of argument.</p>
+        <div class="evi"><b>Evidence:</b> Working in an interdisciplinary group of 4–5 to plan and deliver the structured debate, dividing research and rehearsing together.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 3v-3H4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <div class="tagline">Communication</div>
+        <h3>Communication &amp; public speaking</h3>
+        <p>Presenting clearly and professionally, structuring an argument and responding to counterpoints in real time.</p>
+        <div class="evi"><b>Evidence:</b> Delivering opening, supporting and closing statements in a 20-minute debate that simulated a professional setting, supported by visual aids.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 3.5 10.9c-.6.5-.9 1.2-.9 2H9.4c0-.8-.3-1.5-.9-2A6 6 0 0 1 12 3z"/></svg></div>
+        <div class="tagline">Creativity</div>
+        <h3>Creative thinking &amp; innovation</h3>
+        <p>Generating original angles and alternative solutions rather than accepting the obvious answer.</p>
+        <div class="evi"><b>Evidence:</b> Developing creative perspectives and fresh counter-arguments for the debate, and designing and building this portfolio from scratch.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div>
+        <div class="tagline">Professional values</div>
+        <h3>Ethical &amp; sustainability awareness</h3>
+        <p>Recognising ethical and sustainability implications and weighing them when forming a position.</p>
+        <div class="evi"><b>Evidence:</b> Debating ethical and sustainability issues within the creative industries (LO3), which required balancing commercial, social and environmental concerns.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 20h8M12 17v3M8 9l-2 2 2 2M16 9l2 2-2 2"/></svg></div>
+        <div class="tagline">Digital literacy</div>
+        <h3>Digital &amp; technical skills</h3>
+        <p>Using digital tools to produce and publish professional work for an audience.</p>
+        <div class="evi"><b>Evidence:</b> Building this webpage and publishing it on GitHub Pages as a live, shareable portfolio for Part 3.</div>
+      </article>
+
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <div class="tagline">Self-management</div>
+        <h3>Time management &amp; professionalism</h3>
+        <p>Planning across competing deadlines and meeting submission standards consistently.</p>
+        <div class="evi"><b>Evidence:</b> Managing three staggered deadlines (quiz, debate and portfolio) within Weeks 1–4 while keeping each submission to the required standard.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="wrap" id="reflection">
+    <div class="sec-head"><span class="num">03</span><h2>Reflective summary</h2></div>
+    <div class="reflect">
+      <span class="model-tag">Gibbs' Reflective Cycle (1988)</span>
+      <div class="stages">
+        <span>Description</span><span>Feelings</span><span>Evaluation</span><span>Analysis</span><span>Conclusion</span><span>Action plan</span>
+      </div>
+      <p>Over BSM24001, I completed a quiz, a group debate, and this digital portfolio. Describing the experience, the interdisciplinary debate on sustainability in the creative industries demanded the most from me. At first I felt nervous about speaking for twenty minutes and relying on teammates I barely knew. Evaluating it, the debate went well because we divided research clearly, though our rebuttals were weaker than our opening. Analysing why, I realise structured preparation and Harvard-sourced evidence built my confidence, while uneven time management weakened later arguments. Succi and Canovi (2020) confirm that soft skills like teamwork and communication matter as much as knowledge to employers. I conclude that I strengthened critical thinking, collaboration, and public speaking, but must manage preparation time better. My action plan is to rehearse rebuttals earlier and lead a group task next semester to develop leadership alongside the competencies this module helped me evidence.</p>
+      <p class="wc">147 words · reflective model: Gibbs (1988)</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="references">
+    <div class="sec-head"><span class="num">04</span><h2>References</h2></div>
+    <ul class="refs">
+      <li>Adeani, I.S., Febriani, R.B. and Syafryadin (2020) 'Using GIBBS' reflective cycle in making reflections of literary analysis', <em>Indonesian EFL Journal</em>, 6(2), pp. 139–148.</li>
+      <li>Cottrell, S. (2023) <em>Critical Thinking Skills: Effective Analysis, Argument and Reflection</em>. 4th edn. London: Bloomsbury Academic.</li>
+      <li>Gibbs, G. (1988) <em>Learning by Doing: A Guide to Teaching and Learning Methods</em>. Oxford: Further Education Unit.</li>
+      <li>Succi, C. and Canovi, M. (2020) 'Soft skills to enhance graduate employability: comparing students and employers' perceptions', <em>Studies in Higher Education</em>, 45(9), pp. 1834–1847.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f-inner">
+    <p>Daniel Grozav · BSM24001 Critical and Creative Thinking · Ravensbourne University London · 2026</p>
+    <p><a href="#top">Back to top ↑</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
